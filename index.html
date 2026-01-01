@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Avengers Briefing - Protected</title>
+    <!-- Google Fonts for comic-style font -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <!-- Canvas-confetti for effects -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Bangers', cursive; /* Comic book font */
+            background: linear-gradient(135deg, #000000, #1a1a1a); /* Dark Marvel background */
+            color: #ffffff; /* White text */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        h1 {
+            color: #ff0000; /* Red for Avengers */
+            text-shadow: 2px 2px 4px #000;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #007bff; /* Blue for Captain America */
+            text-shadow: 2px 2px 4px #000;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+        img {
+            max-width: 80%;
+            height: auto;
+            border: 5px solid #ff0000; /* Red border */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+            margin: 20px 0;
+            transition: transform 0.3s ease; /* Hover effect */
+        }
+        img:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+        button {
+            background: linear-gradient(45deg, #ff0000, #007bff); /* Red-blue gradient */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            font-family: 'Bangers', cursive;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background: linear-gradient(45deg, #cc0000, #0056b3); /* Darker on hover */
+            transform: scale(1.1);
+        }
+        .hidden {
+            display: none;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        audio {
+            display: none; /* Hide audio player */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var password = prompt("Enter the Avengers password:");
+        if (password !== "N51SC00L") {
+            alert("Access Denied! This is not for ordinary heroes.");
+            window.location.reload();
+        } else {
+            // Play a Marvel sound effect (short clip, e.g., Avengers assemble theme snippet)
+            var audio = new Audio('https://www.soundjay.com/misc/sounds/bell-ringing-05.wav'); // Placeholder; replace with a Marvel sound URL if available (e.g., from freesound.org)
+            audio.play();
+
+            // Dynamically create content
+            document.body.innerHTML = `
+                <h1>Avengers Assemble!</h1>
+                <h2>Stark Industries Secure Briefing</h2>
+                <p>Agent, you've entered the restricted zone. Prepare for your mission.</p>
+                <button id="revealBtn">Enter Briefing</button>
+                <div id="content" class="hidden">
+                    <h1>Welcome, Tony!</h1>
+                    <h1>Nick Fury wants to recruit you</h1>
+                    <p>This is the protected briefing. The fate of the world depends on you. Assemble the team and save the day!</p>
+                    <a href="https://ibb.co/hFkxLXgH"><img src="https://i.ibb.co/s9hpb5gQ/Shreevar.jpg" alt="Shreevar" border="0"></a>
+                    <p><strong>Mission Brief:</strong> Gather the team, complete the challenges, and celebrate the birth of a legend — cake and chaos guaranteed.</p>
+                </div>
+                <audio id="themeAudio" src="https://example.com/avengers-theme.mp3" preload="auto"></audio> <!-- Optional: Add a real Marvel audio URL -->
+            `;
+
+            // Add interactivity: Button to reveal content with animation
+            document.getElementById('revealBtn').addEventListener('click', function() {
+                var content = document.getElementById('content');
+                content.classList.remove('hidden');
+                content.classList.add('fade-in');
+                // Trigger confetti with Avengers colors
+                confetti({
+                    particleCount: 150,
+                    spread: 90,
+                    origin: { y: 0.6 },
+                    colors: ['#ff0000', '#007bff', '#ffffff'] // Red, blue, white
+                });
+            });
+        }
+    </script>
+</body>
+</html>
